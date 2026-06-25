@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bidang DATUN – Kejaksaan Negeri Nunukan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2D5B;
+      --navy2:  #243870;
+      --gold:   #C9A227;
+      --gold2:  #E8BC35;
+      --red:    #C0392B;
+      --white:  #FFFFFF;
+      --offwhite: #F7F8FC;
+      --gray1:  #6B7280;
+      --gray2:  #E5E7EB;
+      --gray3:  #F1F5F9;
+      --text:   #1A1A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── TOP STRIP ── */
+    .top-strip {
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding: 6px 16px;
+      text-transform: uppercase;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 24px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .logo-emblem {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+    }
+
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 0.72rem;
+      color: var(--gray1);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 7px 14px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover { background: var(--navy); color: var(--white); }
+
+    nav a.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, #2C4A8C 100%);
+      color: var(--white);
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 3px;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 span { color: var(--gold2); }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.03em;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 22px 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--gold2);
+      line-height: 1;
+    }
+
+    .stat-card .lbl {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 6px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 72px 24px; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .section-sub {
+      font-size: 0.92rem;
+      color: var(--gray1);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin: 16px 0 32px;
+      border-radius: 2px;
+    }
+
+    /* ── TUGAS & FUNGSI ── */
+    .tf-section { background: var(--offwhite); }
+
+    .tf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .tf-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 28px 24px;
+      border-top: 4px solid var(--gold);
+      box-shadow: 0 2px 12px rgba(27,45,91,0.07);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .tf-card:hover { box-shadow: 0 6px 24px rgba(27,45,91,0.13); transform: translateY(-3px); }
+
+    .tf-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .tf-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .tf-card p {
+      font-size: 0.83rem;
+      color: var(--gray1);
+      line-height: 1.65;
+    }
+
+    /* ── LAYANAN ── */
+    .layanan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .layanan-card {
+      border: 1.5px solid var(--gray2);
+      border-radius: 10px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .layanan-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--navy);
+      border-radius: 0 2px 2px 0;
+      transition: width 0.25s;
+    }
+
+    .layanan-card:hover { border-color: var(--navy); box-shadow: 0 4px 20px rgba(27,45,91,0.1); }
+    .layanan-card:hover::before { width: 6px; }
+
+    .layanan-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .layanan-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .layanan-card p {
+      font-size: 0.83rem;
+      color: var(--gray1);
+      line-height: 1.65;
+    }
+
+    /* ── BERITA ── */
+    .berita-section { background: var(--offwhite); }
+
+    .berita-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .berita-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .berita-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.12); transform: translateY(-2px); }
+
+    .berita-img {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .berita-img.blue  { background: linear-gradient(135deg, #1B2D5B 0%, #2C4A8C 100%); }
+    .berita-img.gold  { background: linear-gradient(135deg, #C9A227 0%, #E8BC35 100%); }
+    .berita-img.green { background: linear-gradient(135deg, #166534 0%, #15803D 100%); }
+
+    .berita-body { padding: 22px 22px 24px; }
+
+    .berita-meta {
+      font-size: 0.72rem;
+      color: var(--gray1);
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .berita-meta .tag {
+      background: var(--gray3);
+      color: var(--navy);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    .berita-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .berita-card p {
+      font-size: 0.82rem;
+      color: var(--gray1);
+      line-height: 1.65;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      border-bottom: 1.5px solid var(--gold);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+
+    .read-more:hover { color: var(--gold); }
+
+    /* ── DASAR HUKUM ── */
+    .hukum-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 36px;
+      font-size: 0.86rem;
+    }
+
+    .hukum-table thead tr {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .hukum-table th {
+      padding: 14px 18px;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.8rem;
+    }
+
+    .hukum-table tbody tr {
+      border-bottom: 1px solid var(--gray2);
+      transition: background 0.15s;
+    }
+
+    .hukum-table tbody tr:hover { background: var(--gray3); }
+
+    .hukum-table td {
+      padding: 14px 18px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .hukum-table td:first-child {
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ── KONTAK ── */
+    .kontak-section { background: var(--navy); color: var(--white); }
+    .kontak-section .section-eyebrow { color: var(--gold2); }
+    .kontak-section .section-title { color: var(--white); }
+    .kontak-section .section-sub { color: rgba(255,255,255,0.7); }
+    .kontak-section .divider { background: var(--gold); }
+
+    .kontak-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+
+    .kontak-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 26px;
+      align-items: flex-start;
+    }
+
+    .kontak-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(201,162,39,0.15);
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .kontak-info strong {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .kontak-info span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.55;
+    }
+
+    .kontak-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .kontak-form input,
+    .kontak-form textarea,
+    .kontak-form select {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.18);
+      border-radius: 7px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.87rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .kontak-form input::placeholder,
+    .kontak-form textarea::placeholder { color: rgba(255,255,255,0.4); }
+
+    .kontak-form input:focus,
+    .kontak-form textarea:focus,
+    .kontak-form select:focus { border-color: var(--gold); }
+
+    .kontak-form select option { background: var(--navy); }
+
+    .kontak-form textarea { min-height: 110px; resize: vertical; }
+
+    .btn-send {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.87rem;
+      padding: 13px 28px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-send:hover { background: var(--gold2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+
+    footer strong { color: rgba(255,255,255,0.85); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .kontak-grid { grid-template-columns: 1fr; gap: 32px; }
+      nav { display: none; }
+      .hukum-table { font-size: 0.78rem; }
+      .hukum-table th, .hukum-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">Kejaksaan Negeri Nunukan – Kabupaten Nunukan, Kalimantan Utara</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo-block">
+      <!-- SVG Lambang Kejaksaan RI -->
+      <svg class="logo-emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#1B2D5B" stroke="#C9A227" stroke-width="3"/>
+        <!-- Scales of Justice simplified -->
+        <line x1="50" y1="22" x2="50" y2="75" stroke="#C9A227" stroke-width="3" stroke-linecap="round"/>
+        <line x1="28" y1="35" x2="72" y2="35" stroke="#C9A227" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="30" cy="47" rx="10" ry="5" fill="none" stroke="#C9A227" stroke-width="2"/>
+        <ellipse cx="70" cy="47" rx="10" ry="5" fill="none" stroke="#C9A227" stroke-width="2"/>
+        <line x1="28" y1="35" x2="20" y2="47" stroke="#C9A227" stroke-width="1.8"/>
+        <line x1="40" y1="35" x2="40" y2="47" stroke="#C9A227" stroke-width="1.8"/>
+        <line x1="72" y1="35" x2="60" y2="47" stroke="#C9A227" stroke-width="1.8"/>
+        <line x1="72" y1="35" x2="80" y2="47" stroke="#C9A227" stroke-width="1.8"/>
+        <!-- Base -->
+        <rect x="40" y="72" width="20" height="4" rx="2" fill="#C9A227"/>
+        <line x1="32" y1="76" x2="68" y2="76" stroke="#C9A227" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Stars top -->
+        <text x="50" y="20" text-anchor="middle" font-size="8" fill="#C9A227">✦</text>
+        <!-- Text DATUN -->
+        <text x="50" y="93" text-anchor="middle" font-size="7" fill="#C9A227" font-family="Arial" font-weight="bold" letter-spacing="1">DATUN</text>
+      </svg>
+      <div class="logo-text">
+        <h1>Bidang Datun</h1>
+        <p>Kejaksaan Negeri Nunukan</p>
+      </div>
+    </a>
+    <nav>
+      <a href="#tugas" class="">Tugas &amp; Fungsi</a>
+      <a href="#layanan" class="">Layanan</a>
+      <a href="#berita" class="">Berita</a>
+      <a href="#dasar-hukum" class="">Dasar Hukum</a>
+      <a href="#kontak" class="active">Hubungi Kami</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-label">Bidang Perdata &amp; Tata Usaha Negara</span>
+      <h2>Melindungi Kepentingan <span>Hukum Negara</span> dengan Integritas</h2>
+      <p>Bidang Datun Kejaksaan Negeri Nunukan memberikan pelayanan hukum perdata dan tata usaha negara dalam rangka penyelamatan aset negara, bantuan hukum, pertimbangan hukum, dan tindakan hukum lainnya berdasarkan Surat Kuasa Khusus.</p>
+      <div class="hero-cta">
+        <a href="#layanan" class="btn-primary">Lihat Layanan</a>
+        <a href="#kontak" class="btn-outline">Hubungi Kami</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="lbl">Jenis Layanan Utama Datun</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">SKK</div>
+        <div class="lbl">Berbasis Surat Kuasa Khusus</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">24+</div>
+        <div class="lbl">Instansi Pemerintah Dilayani</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">2004</div>
+        <div class="lbl">Dasar UU Kejaksaan RI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TUGAS & FUNGSI -->
+<section class="tf-section" id="tugas">
+  <div class="section-inner">
+    <p class="section-eyebrow">Tugas &amp; Fungsi</p>
+    <h2 class="section-title">Peran Bidang Datun</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Bidang Perdata dan Tata Usaha Negara (DATUN) memiliki tugas dan fungsi strategis dalam menegakkan kepentingan hukum negara dan pemerintah daerah.</p>
+
+    <div class="tf-grid">
+      <div class="tf-card">
+        <div class="tf-icon">⚖️</div>
+        <h3>Bantuan Hukum (Perkara Perdata)</h3>
+        <p>Memberikan bantuan hukum kepada instansi pemerintah sebagai Penggugat atau Tergugat di pengadilan dalam perkara perdata berdasarkan Surat Kuasa Khusus.</p>
+      </div>
+      <div class="tf-card">
+        <div class="tf-icon">📋</div>
+        <h3>Pertimbangan Hukum</h3>
+        <p>Memberikan pendapat hukum (legal opinion) dan fatwa hukum kepada instansi pemerintah terkait masalah perdata maupun tata usaha negara yang dihadapi.</p>
+      </div>
+      <div class="tf-card">
+        <div class="tf-icon">🏛️</div>
+        <h3>Tindakan Hukum Lain</h3>
+        <p>Melaksanakan tindakan hukum lain seperti mediasi, negosiasi, dan penyelesaian sengketa di luar pengadilan untuk menjaga kepentingan negara.</p>
+      </div>
+      <div class="tf-card">
+        <div class="tf-icon">🛡️</div>
+        <h3>Penyelamatan Aset Negara</h3>
+        <p>Melakukan upaya penyelamatan dan pemulihan keuangan serta aset negara yang bermasalah melalui jalur hukum perdata.</p>
+      </div>
+      <div class="tf-card">
+        <div class="tf-icon">📜</div>
+        <h3>Perwakilan di PTUN</h3>
+        <p>Mewakili pemerintah daerah dan instansi negara dalam sengketa tata usaha negara (TUN) di Pengadilan Tata Usaha Negara.</p>
+      </div>
+      <div class="tf-card">
+        <div class="tf-icon">🤝</div>
+        <h3>Koordinasi Antar Instansi</h3>
+        <p>Berkoordinasi dengan instansi pemerintah, BUMN/BUMD, dan lembaga negara lainnya dalam penanganan masalah hukum perdata dan TUN.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYANAN -->
+<section id="layanan">
+  <div class="section-inner">
+    <p class="section-eyebrow">Layanan Kami</p>
+    <h2 class="section-title">Jenis Layanan Hukum Datun</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Instansi pemerintah dapat mengajukan permohonan layanan hukum kepada Bidang Datun Kejari Nunukan melalui mekanisme Surat Kuasa Khusus (SKK).</p>
+
+    <div class="layanan-grid">
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 01</div>
+        <h3>Bantuan Hukum Perdata</h3>
+        <p>Pendampingan dan representasi hukum bagi instansi pemerintah dalam proses persidangan perdata di Pengadilan Negeri, mulai dari pembuatan gugatan, jawaban, hingga eksekusi putusan.</p>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 02</div>
+        <h3>Bantuan Hukum TUN</h3>
+        <p>Representasi pemerintah dalam sengketa Tata Usaha Negara terkait keputusan pejabat TUN yang digugat, termasuk penanganan perkara di PTUN Samarinda.</p>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 03</div>
+        <h3>Pertimbangan Hukum (Legal Opinion)</h3>
+        <p>Pemberian pendapat hukum tertulis (legal opinion) dan fatwa hukum atas permasalahan hukum perdata atau TUN yang diajukan oleh instansi pemerintah pusat maupun daerah.</p>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 04</div>
+        <h3>Audit Hukum (Legal Audit)</h3>
+        <p>Pemeriksaan dan analisis aspek hukum terhadap aset, kontrak, perjanjian, dan kegiatan instansi pemerintah guna mencegah potensi sengketa hukum di kemudian hari.</p>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 05</div>
+        <h3>Penyusunan Kontrak &amp; MoU</h3>
+        <p>Bantuan penyusunan, penelaahan, dan harmonisasi naskah perjanjian/kontrak, nota kesepahaman (MoU), dan dokumen hukum lainnya milik instansi pemerintah.</p>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-num">Layanan 06</div>
+        <h3>Pemulihan Aset Negara</h3>
+        <p>Upaya pengembalian dan pemulihan keuangan negara melalui jalur gugatan perdata atas kerugian yang ditimbulkan pihak ketiga terhadap aset milik negara atau daerah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BERITA -->
+<section class="berita-section" id="berita">
+  <div class="section-inner">
+    <p class="section-eyebrow">Informasi &amp; Kegiatan</p>
+    <h2 class="section-title">Berita Terkini Bidang Datun</h2>
+    <div class="divider"></div>
+
+    <div class="berita-grid">
+      <div class="berita-card">
+        <div class="berita-img blue">⚖️</div>
+        <div class="berita-body">
+          <div class="berita-meta">
+            <span class="tag">Bantuan Hukum</span>
+            <span>20 Juni 2025</span>
+          </div>
+          <h3>Kejari Nunukan Berhasil Menangkan Perkara Perdata Senilai Rp 2,4 Miliar untuk Pemerintah Daerah</h3>
+          <p>Tim Jaksa Pengacara Negara (JPN) Bidang Datun Kejari Nunukan berhasil memenangkan perkara perdata di Pengadilan Negeri Nunukan yang melibatkan sengketa aset daerah.</p>
+          <a href="#" class="read-more">Baca Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="berita-card">
+        <div class="berita-img gold">📋</div>
+        <div class="berita-body">
+          <div class="berita-meta">
+            <span class="tag">Pertimbangan Hukum</span>
+            <span>12 Juni 2025</span>
+          </div>
+          <h3>Bidang Datun Berikan Legal Opinion Terkait Kontrak Pengadaan Barang Dinas PU Nunukan</h3>
+          <p>Jaksa Pengacara Negara Kejari Nunukan memberikan pertimbangan hukum kepada Dinas PUPR Kabupaten Nunukan terkait permasalahan kontrak pengadaan infrastruktur.</p>
+          <a href="#" class="read-more">Baca Selengkapnya →</a>
+        </div>
+      </div>
+      <div class="berita-card">
+        <div class="berita-img green">🤝</div>
+        <div class="berita-body">
+          <div class="berita-meta">
+            <span class="tag">Koordinasi</span>
+            <span>5 Juni 2025</span>
+          </div>
+          <h3>Rapat Koordinasi JPN Wilayah Kalimantan Utara: Sinergitas Penanganan Aset Negara Bermasalah</h3>
+          <p>Bidang Datun Kejari Nunukan mengikuti rapat koordinasi Jaksa Pengacara Negara se-Kalimantan Utara membahas strategi pemulihan aset negara yang bermasalah.</p>
+          <a href="#" class="read-more">Baca Selengkapnya →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASAR HUKUM -->
+<section id="dasar-hukum">
+  <div class="section-inner">
+    <p class="section-eyebrow">Dasar Hukum</p>
+    <h2 class="section-title">Landasan Peraturan Perundang-undangan</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Pelaksanaan tugas dan fungsi Bidang Datun dilandasi oleh sejumlah peraturan perundang-undangan yang berlaku.</p>
+
+    <table class="hukum-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Peraturan</th>
+          <th>Tentang</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>UU No. 16 Tahun 2004</td>
+          <td>Kejaksaan Republik Indonesia</td>
+          <td>Landasan utama fungsi JPN sebagai pengacara negara</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>UU No. 11 Tahun 2021</td>
+          <td>Perubahan atas UU Kejaksaan</td>
+          <td>Penguatan kewenangan Kejaksaan termasuk bidang perdata</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Perpres No. 38 Tahun 2010</td>
+          <td>Organisasi dan Tata Kerja Kejaksaan RI</td>
+          <td>Struktur organisasi bidang datun di tingkat kejari</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Perja No. PER-025/A/JA/2015</td>
+          <td>Petunjuk Pelaksanaan Penegakan Hukum, Bantuan Hukum, Pertimbangan Hukum, Tindakan Hukum Lain dan Pelayanan Hukum pada Bidang Perdata dan TUN</td>
+          <td>Juknis pelaksanaan tugas bidang datun</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Perja No. 020/A/JA/2014</td>
+          <td>Petunjuk Teknis Penanganan Perkara PTUN</td>
+          <td>Tata cara penanganan perkara TUN oleh JPN</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>KMA No. 062/KMA/SK/IV/2011</td>
+          <td>Kerjasama Mahkamah Agung dengan Kejaksaan RI</td>
+          <td>Koordinasi antara MA dan Kejaksaan dalam perkara perdata</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section class="kontak-section" id="kontak">
+  <div class="section-inner">
+    <p class="section-eyebrow">Hubungi Kami</p>
+    <h2 class="section-title">Kantor Bidang Datun Kejari Nunukan</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Untuk permohonan layanan hukum atau informasi lebih lanjut, silakan hubungi kami melalui saluran berikut.</p>
+
+    <div class="kontak-grid">
+      <div>
+        <div class="kontak-item">
+          <div class="kontak-icon">📍</div>
+          <div class="kontak-info">
+            <strong>Alamat Kantor</strong>
+            <span>Jl. Bhayangkara No. 1, Nunukan,<br>Kab. Nunukan, Kalimantan Utara 77482</span>
+          </div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon">📞</div>
+          <div class="kontak-info">
+            <strong>Telepon</strong>
+            <span>0823-2338-2033</span>
+          </div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon">📧</div>
+          <div class="kontak-info">
+            <strong>Email</strong>
+            <span>nunukandatun221@gmail.com</span>
+          </div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon">🕐</div>
+          <div class="kontak-info">
+            <strong>Jam Pelayanan</strong>
+            <span>Senin – Jumat: 08.00 – 16.00 WITA<br>Sabtu, Minggu &amp; Hari Libur: Tutup</span>
+          </div>
+        </div>
+        <div class="kontak-item">
+          <div class="kontak-icon">ℹ️</div>
+          <div class="kontak-info">
+            <strong>Catatan Penting</strong>
+            <span>Permohonan layanan Datun harus disertai Surat Permohonan resmi dari pimpinan instansi yang bersangkutan.</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="kontak-form" onsubmit="handleSubmit(event)">
+          <input type="text" placeholder="Nama Lengkap / Instansi" required />
+          <input type="email" placeholder="Alamat Email" required />
+          <input type="text" placeholder="Nomor Telepon" />
+          <select>
+            <option value="" disabled selected>Jenis Permohonan Layanan</option>
+            <option>Bantuan Hukum Perdata</option>
+            <option>Bantuan Hukum TUN</option>
+            <option>Pertimbangan Hukum (Legal Opinion)</option>
+            <option>Audit Hukum (Legal Audit)</option>
+            <option>Penyusunan Kontrak / MoU</option>
+            <option>Pemulihan Aset Negara</option>
+            <option>Informasi Umum</option>
+          </select>
+          <textarea placeholder="Uraikan singkat permasalahan hukum atau pertanyaan Anda..."></textarea>
+          <button type="submit" class="btn-send">Kirim Permohonan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Bidang Perdata dan Tata Usaha Negara (DATUN)</strong><br>
+  Kejaksaan Negeri Nunukan – Kabupaten Nunukan, Kalimantan Utara</p>
+  <p style="margin-top:8px;">© 2025 Kejaksaan Negeri Nunukan. Website resmi instansi pemerintah.</p>
+</footer>
+
+<script>
+  // Smooth active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = 'Terkirim ✓';
+    btn.style.background = '#166534';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Kirim Permohonan';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
